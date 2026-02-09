@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+<remote name="efx-github" fetch="git@github.com:muneerefx" review="" />
+<!-- CICD-TEST GITHUB REPOSITORIES -->
+<project path="hyperbuild/sdk" name="hypervisor-app" remote="efx-github"  revision="7a97ec55d6648133ce82c42b4697633bca2d1d07"/>
+</manifest>
+
