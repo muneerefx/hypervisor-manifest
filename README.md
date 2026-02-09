@@ -1,4 +1,2 @@
 
-
-
 # hypervisor-manifest
