@@ -22,3 +22,4 @@ EOF
 echo "Files created with content:"
 echo " - $TXT_FILE"
 echo " - $WIC_FILE"
+
