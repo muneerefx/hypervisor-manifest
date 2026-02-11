@@ -2,23 +2,23 @@
 
 BUILD_DIR="android_build"
 
-echo "Creating Android build artifact: $BUILD_DIR"
+echo "Creating fixed Android build directory..."
 
-# Create directory structure
+# Create fixed directory structure
 mkdir -p $BUILD_DIR/app/src/main/java/com/example/app
 mkdir -p $BUILD_DIR/app/src/main/res/layout
-mkdir -p $BUILD_DIR/app/src/main/res/values
-mkdir -p $BUILD_DIR/gradle/wrapper
 
 ########################################
-# Root level files
+# 1. settings.gradle
 ########################################
-
 cat <<EOF > $BUILD_DIR/settings.gradle
 rootProject.name = "ExampleApp"
 include ':app'
 EOF
 
+########################################
+# 2. Root build.gradle
+########################################
 cat <<EOF > $BUILD_DIR/build.gradle
 buildscript {
     repositories {
@@ -29,47 +29,11 @@ buildscript {
         classpath 'com.android.tools.build:gradle:8.1.0'
     }
 }
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-EOF
-
-cat <<EOF > $BUILD_DIR/gradle.properties
-org.gradle.jvmargs=-Xmx2048m
-android.useAndroidX=true
-EOF
-
-cat <<EOF > $BUILD_DIR/local.properties
-sdk.dir=/path/to/android/sdk
-EOF
-
-cat <<EOF > $BUILD_DIR/gradlew
-#!/bin/bash
-echo "Simulated Gradle Wrapper Execution"
-EOF
-
-chmod +x $BUILD_DIR/gradlew
-
-cat <<EOF > $BUILD_DIR/gradlew.bat
-@echo off
-echo Simulated Gradle Wrapper Execution
 EOF
 
 ########################################
-# Gradle wrapper
+# 3. app/build.gradle
 ########################################
-
-cat <<EOF > $BUILD_DIR/gradle/wrapper/gradle-wrapper.properties
-distributionUrl=https\\://services.gradle.org/distributions/gradle-8.0-bin.zip
-EOF
-
-########################################
-# App module files
-########################################
-
 cat <<EOF > $BUILD_DIR/app/build.gradle
 plugins {
     id 'com.android.application'
@@ -86,41 +50,23 @@ android {
         versionCode 1
         versionName "1.0"
     }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-}
-
-dependencies {
-    implementation 'androidx.appcompat:appcompat:1.6.1'
 }
 EOF
 
-cat <<EOF > $BUILD_DIR/app/proguard-rules.pro
-# ProGuard rules
--dontwarn okhttp3.**
-EOF
-
 ########################################
-# Android Manifest
+# 4. AndroidManifest.xml
 ########################################
-
 cat <<EOF > $BUILD_DIR/app/src/main/AndroidManifest.xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.app">
 
     <application
-        android:label="ExampleApp"
-        android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+        android:label="ExampleApp">
 
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
@@ -129,9 +75,8 @@ cat <<EOF > $BUILD_DIR/app/src/main/AndroidManifest.xml
 EOF
 
 ########################################
-# Java MainActivity
+# 5. MainActivity.java
 ########################################
-
 cat <<EOF > $BUILD_DIR/app/src/main/java/com/example/app/MainActivity.java
 package com.example.app;
 
@@ -142,19 +87,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
     }
 }
 EOF
 
 ########################################
-# Layout XML
+# 6. activity_main.xml
 ########################################
-
 cat <<EOF > $BUILD_DIR/app/src/main/res/layout/activity_main.xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
@@ -162,29 +104,8 @@ cat <<EOF > $BUILD_DIR/app/src/main/res/layout/activity_main.xml
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textSize="20sp"/>
+        android:text="Hello Android"/>
 </LinearLayout>
 EOF
 
-########################################
-# Strings XML
-########################################
-
-cat <<EOF > $BUILD_DIR/app/src/main/res/values/strings.xml
-<resources>
-    <string name="app_name">ExampleApp</string>
-</resources>
-EOF
-
-########################################
-# Styles XML
-########################################
-
-cat <<EOF > $BUILD_DIR/app/src/main/res/values/styles.xml
-<resources>
-    <style name="Theme.AppCompat.Light.DarkActionBar" parent="Theme.AppCompat.Light.DarkActionBar"/>
-</resources>
-EOF
-
-echo "✅ Android build artifact with content created successfully!"
+echo "✅ 6 required Android files created successfully in ./android_build"
