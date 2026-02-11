@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BUILD_DIR="android_build_$(date +%Y%m%d_%H%M%S)"
+BUILD_DIR="android_build"
 
 echo "Creating Android build artifact: $BUILD_DIR"
 
