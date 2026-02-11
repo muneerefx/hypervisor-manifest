@@ -3,6 +3,6 @@
 
 <remote name="efx-github" fetch="git@github.com:muneerefx" review="" />
 <!-- CICD-TEST GITHUB REPOSITORIES -->
-<project path="hyperbuild/sdk" name="hypervisor-app" remote="efx-github"  revision="bb714fc601ef7cad459bcae487e7895d9bae7a3b"/>
+<project path="hyperbuild/sdk" name="hypervisor-app" remote="efx-github"  revision="775f6ba1a4567477f2448abaef6bb787aa723737"/>
 </manifest>
 
