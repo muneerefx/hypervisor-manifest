@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 EOF
-
 ########################################
 # 6. activity_main.xml
 ########################################
