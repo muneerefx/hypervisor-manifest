@@ -1,0 +1,3 @@
+[submodule "etc/apps/hypervisor-app"]
+	path = etc/apps/hypervisor-app
+	url = git@github.com:muneerefx/hypervisor-app.git
