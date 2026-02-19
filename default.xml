@@ -5,5 +5,3 @@
 <!-- CICD-TEST GITHUB REPOSITORIES -->
 <project path="hyperbuild/sdk" name="hypervisor-app" remote="efx-github"  revision="1516033b74ca195dd4b78dbcaae3e1460c971ee9"/>
 </manifest>
-
-
