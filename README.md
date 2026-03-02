@@ -1,16 +1,2 @@
 # hypervisor-manifes
 \\
-m
-
-
-
-
-
-
-
-
-
-
-
-
-
